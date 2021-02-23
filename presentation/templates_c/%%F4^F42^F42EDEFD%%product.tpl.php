@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2020-12-16 03:18:23
+<?php /* Smarty version 2.6.25-dev, created on 2021-02-23 02:55:38
          compiled from product.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'load_presentation_object', 'product.tpl', 1, false),)), $this); ?>
@@ -30,6 +30,9 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'load_presen
 </span>
     <?php endif; ?>
 </p>
+
+<form class="add-product-form" target="_self" method="post" action="<?php echo $this->_tpl_vars['obj']->mProduct['link_to_add_product']; ?>
+">
 
    <p class="attributes">
       <?php unset($this->_sections['k']);
@@ -72,6 +75,11 @@ $this->_sections['k']['last']       = ($this->_sections['k']['iteration'] == $th
 <?php endif; ?>
 <?php endfor; endif; ?>
 </p>
+
+<p>
+    <input type="submit" name="submit" value="Add to Cart" />
+</p>
+</form>
 
 
 <?php if ($this->_tpl_vars['obj']->mLinkToContinueShopping): ?>

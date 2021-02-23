@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2021-02-09 06:31:40
+<?php /* Smarty version 2.6.25-dev, created on 2021-02-23 07:39:08
          compiled from store_front.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'config_load', 'store_front.tpl', 2, false),array('function', 'load_presentation_object', 'store_front.tpl', 3, false),)), $this); ?>
@@ -52,6 +52,20 @@ $this->_smarty_include(array('smarty_include_tpl_file' => $this->_tpl_vars['obj'
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+             <div class="view-cart">
+              <form target="_self" method="post" action="<?php echo @PAYPAL_URL; ?>
+">
+                <input type="hidden" name="cmd" value="_cart" />
+                <input type="hidden" name="business" value="<?php echo @PAYPAL_EMAIL; ?>
+" />
+                <input type="hidden" name="display" value="1" />
+                <input type="hidden" name="shopping_url" value="<?php echo $this->_tpl_vars['obj']->mPayPalContinueShoppingLink; ?>
+" />
+                <input type="hidden" name="return" value="<?php echo @PAYPAL_RETURN_URL; ?>
+" />
+                <input type="submit" name="view_cart" value="View Cart" />
+                </form>
+             </div>
            </div>
            
          </div>

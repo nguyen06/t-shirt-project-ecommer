@@ -9,6 +9,9 @@ class StoreFront
   // Page title
   public $mPageTitle;
 
+  //paypal continue shopping link
+  public $mPayPalContinueShoppingLink;
+
   // Class constructor
   public function __construct()
   {
@@ -18,6 +21,77 @@ class StoreFront
   // Initialize presentation object
   public function init()
   {
+
+    //Create "Continue Shopping" link for the PayPal shopping cart
+    if(!isset($_GET['AddProduct']))
+    {
+      /* Store the current request needed for the paypal continue shopping functionality */
+      $_SESSION['paypal_continue_shopping'] = Link::Build(str_replace(VIRTUAL_LOCATION,'',$_SERVER['REQUEST_URI']));
+
+      $this->mPayPalContinueShoppingLink = $_SESSION['paypal_continue_shopping'];
+    }
+
+    // If Add to Cart was clicked, prepare Paypal variables
+    else
+    {
+      // Clean  output buffer
+      ob_clean();
+
+      $product_id = 0;
+
+      // Get the product ID to be added to cart
+      if(isset($_GET['AddProduct']))
+      {
+        $product_id = (int)$_GET['AddProduct'];
+      }
+      else
+      {
+        trigger_error('AddProduct not set');
+      }
+
+      $selected_attribute_groups = array();
+      $selected_attribute_values = array();
+
+      foreach($_POST as $key => $value)
+      {
+        //If there are feilds starting with "attr_" in the POST array
+        if(substr($key,0,5) == 'attr_')
+        {
+          // Get the selected attribute name and value
+          $selected_attribute_groups[] = substr($key, strlen('attr_'));
+          $selected_attribute_values[] = $_POST[$key];
+        }
+      }
+
+      // Get product infor
+      $product = Catalog::GetProductDetails($product_id);
+
+      // Build the paypal url to add the product to cart
+      $paypal_url = PAYPAL_URL . '?cmd=_cart&business=' . PAYPAL_EMAIL . '&item_name=' . rawurlencode($product['name']);
+
+      if(count($selected_attribute_groups) > 0)
+      {
+        $paypal_url .= '&ono=' . implode('/', $selected_attribute_groups) . '&oso='.implode('/', $selected_attribute_values);
+
+      }
+
+      $paypal_url .= '&amount=' . ($product['discounted_price'] == 0 ? $product['price'] : $product['discounted_price']).
+                      '&currency_code='.PAYPAL_CURRENCY_CODE.'&add=1'. 
+                      '&shopping_url=' . rawurlencode($_SESSION['paypal_continue_shopping']).
+                      '&return=' . rawurlencode(PAYPAL_RETURN_URL).
+                      '&cancel_return=' . rawurlencode(PAYPAL_CANCEL_RETURN_URL);
+      
+      // Redirect to the PayPAl cart page
+      header('HTTP/1.1 302 Found');
+      header('Location: '.$paypal_url);
+
+      // Clear the output buffer and stop execution
+      flush();
+      ob_flush();
+      ob_end_clean();
+      exit();
+    }
+
     // Load department details if visiting a department
     if (isset ($_GET['DepartmentId']))
     {
