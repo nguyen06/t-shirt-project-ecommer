@@ -17,6 +17,9 @@
     {/if}
 </p>
 
+{* the Add to cart form *}
+<form class="add-product-form" target="_self" method="post" action="{$obj->mProduct.link_to_add_product}">
+
 {* Generate the list of attribute values *}
    <p class="attributes">
    {* Parse the list of attributes and attribute values *}
@@ -40,6 +43,12 @@
 {/if}
 {/section}
 </p>
+
+{* Add the submit button and close the form *}
+<p>
+    <input type="submit" name="submit" value="Add to Cart" />
+</p>
+</form>
 
 
 {if $obj->mLinkToContinueShopping}
