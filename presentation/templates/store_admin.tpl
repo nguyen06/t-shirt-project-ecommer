@@ -6,7 +6,7 @@
     <head>
         <title>Demo Store Admin from Beginning PHP and MySQL E-Commer</title>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-        <link href="{$obj->mSiteUrl}style/tshirtshop.css" type="text/css" rel="stylesheet" />
+        <link href="{$obj->mSiteUrl}styles/tshirtshop.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
         <div id="doc" class="yui-t7">

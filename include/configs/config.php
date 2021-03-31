@@ -57,7 +57,7 @@ define('PAYPAL_CURRENCY_CODE','USD');
 define('PAYPAL_RETURN_URL','http://www.example.com');
 define('PAYPAL_CANCEL_RETURN_URL','http://wwww.example.com');
 
-define('USE_SSL', 'yes');
+define('USE_SSL', 'no');
 
 define('ADMIN_USERNAME', 'tshirtshopadmin');
 define('ADMIN_PASSWORD', 'tshirtshopadmin');

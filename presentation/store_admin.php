@@ -9,7 +9,7 @@ class StoreAdmin
 
     public function __construct()
     {
-        $this->mSiteUrl = Link::Build('','htpps');
+        $this->mSiteUrl = Link::Build('','https');
 
         //enfore page to be accessed through HTTPS if USE_SSL is on
         if(USE_SSL == 'yes' && getenv('HTTPS') != 'on' )
@@ -29,7 +29,7 @@ class StoreAdmin
             $this->mMenuCell = 'admin_menu.tpl';
 
             //If logged out
-            if(isset($_GET['page']) && ($_GET['page'] == 'Logout'))
+            if(isset($_GET['Page']) && ($_GET['Page'] == 'Logout'))
             {
                 unset($_SESSION['admin_logged']);
                 header('Location: ' .Link::ToAdmin());

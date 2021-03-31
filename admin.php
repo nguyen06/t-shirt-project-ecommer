@@ -7,10 +7,10 @@ ob_start();
 
  // Include itility files
 require_once 'include/configs/config.php';
-require_once BUSINESS_DIR . 'error_handler.php';
+//require_once BUSINESS_DIR . 'error_handler.php';
 
 // Set the error handler
-ErrorHandler::SetHandler();
+//ErrorHandler::SetHandler();
 
 // Load the application page template
 require_once PRESENTATION_DIR . 'application.php';
@@ -26,7 +26,7 @@ require_once BUSINESS_DIR . 'catalog.php';
 $application = new Application();
 
 // Display the page
-$application->display('store_admin.php');
+$application->display('store_admin.tpl');
 
 // close database connection
 DatabaseHandler::Close();

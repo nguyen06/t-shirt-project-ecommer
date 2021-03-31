@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2021-03-30 04:58:37
+<?php /* Smarty version 2.6.25-dev, created on 2021-03-30 19:32:11
          compiled from first_page_contents.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'load_presentation_object', 'first_page_contents.tpl', 2, false),)), $this); ?>
