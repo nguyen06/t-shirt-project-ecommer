@@ -36,6 +36,16 @@ class StoreAdmin
 
                 exit();
             }
+
+            //If Page is not explicity set, assume the Departments page
+            $admin_page = isset($_GET['Page']) ? $_GET['Page'] : 'Departments';
+
+            // Choose what admin page to load...
+            if($admin_page == 'Departments')
+            {
+                $this->mContentsCell = 'admin_departments.tpl';
+            }
+                //$this->mContentsCell = 'admin_departments.tpl';
         }
     }
 

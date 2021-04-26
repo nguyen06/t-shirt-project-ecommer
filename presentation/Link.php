@@ -225,5 +225,10 @@ class Link
 
     return self::Build($link);
   }
+
+  public static function ToDepartmentsAdmin()
+  {
+    return self::ToAdmin('Page=Departments');
+  }
 }
 ?>

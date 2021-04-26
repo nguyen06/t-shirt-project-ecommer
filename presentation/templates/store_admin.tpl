@@ -15,6 +15,7 @@
                     {include file=$obj->mMenuCell}
                 </div>
                 <div class="yui-g">
+                <p>{$obj->mContentsCell}</p>
                     {include file=$obj->mContentsCell}
                 </div>
             </div>

@@ -251,6 +251,38 @@ class Catalog
     return DatabaseHandler::GetOne($sql, $params);
   }
 
+  public static function GetDepartmentsWithDescriptions()
+  {
+    $sql = 'CALL catalog_get_departments()';
+
+    return DatabaseHandler::GetAll($sql);
+  }
+
+  public static function AddDepartment($departmentName, $departmentDescription)
+  {
+    $sql = 'CALL catalog_add_department(:department_name, :department_description';
+    $params = array(':department_name' => $departmentName, ':department_description' => $departmentDescription);
+
+    DatabaseHandler::Execute($sql,$params);
+  }
+
+  public static function UpdateDepartment($departmentId, $departmentName, $departmentDescription)
+  {
+    $sql = 'CALL catalog_update_department(:department_id, :department_name,:department_description)';
+    $params = array(':department_id' => $departmentId, ':department_name'=> $departmentName, ':department_description'=>$departmentDescription);
+
+    DatabaseHandle::Execute($sql, $params);
+  }
+
+  public static function DeleteDepartment($departmentId)
+  {
+    $sql = 'CALL catalog_delete_department(:department_id)';
+
+    $params = array(':department_id'=> $departmentId);
+
+    return DatabaseHandler::GetOne($sql, $params);
+  }
+
   // Search the catalog
   public static function Search($searchString, $allWords,
                                 $pageNo, &$rHowManyPages)
